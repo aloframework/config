@@ -154,6 +154,8 @@
                 $r .= "$k \t => $v," . self::EOL;
             }
 
+            $r = rtrim($r, ',' . self::EOL);
+
             return $r;
         }
     }
