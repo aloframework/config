@@ -1,0 +1,36 @@
+{
+  "name": "aloframework/config",
+  "description": "Allows easy, interfaceable class configuration",
+  "prefer-stable": true,
+  "type": "library",
+  "license": "GPL-3.0+",
+  "homepage": "https://github.com/aloframework/config",
+  "keywords": [
+    "PHP",
+    "5.4",
+    "AloFramework",
+    "config",
+    "configuration",
+    "interface"
+  ],
+  "authors": [
+    {
+      "name": "Art",
+      "email": "a.molcanovas@gmail.com",
+      "role": "Developer",
+      "homepage": "https://github.com/Alorel"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/aloframework/config/issues"
+  },
+  "require": {
+    "php": ">=5.4",
+    "aloframework/common": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AloFramework\\Config\\": "src"
+    }
+  }
+}
