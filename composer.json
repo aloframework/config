@@ -1,6 +1,6 @@
 {
   "name": "aloframework/config",
-  "description": "Allows easy, interfaceable class configuration",
+  "description": "Allows easy, interfaceable class configuration with the ability to change the configuration during runtime",
   "prefer-stable": true,
   "type": "library",
   "license": "GPL-3.0+",
