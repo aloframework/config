@@ -3,12 +3,13 @@
     namespace AloFramework\Config;
 
     use AloFramework\Common\Alo;
+    use ArrayAccess;
 
     /**
      * The abstract configuration class
      * @author Art <a.molcanovas@gmail.com>
      */
-    abstract class AbstractConfig {
+    abstract class AbstractConfig implements ArrayAccess {
 
         /**
          * Default configuration
@@ -174,5 +175,58 @@
             $r = rtrim($r, ',' . self::EOL);
 
             return $r;
+        }
+
+        /**
+         * Sets a custom config item
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string|int|null $offset The config item key
+         * @param mixed           $value  The config item value
+         */
+        function offsetSet($offset, $value) {
+            if (is_null($offset)) {
+                $this->custom[] = $value;
+                $this->merge();
+            } else {
+                $this->set($offset, $value);
+            }
+        }
+
+        /**
+         * Checks if a merged config item exists
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param mixed $offset Config item key
+         *
+         * @return bool
+         */
+        function offsetExists($offset) {
+            return isset($this->merged[$offset]);
+        }
+
+        /**
+         * Removes a custom config item key
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string|int $offset The config item key
+         */
+        function offsetUnset($offset) {
+            if (array_key_exists($offset, $this->custom)) {
+                unset($this->custom[$offset]);
+                $this->merge();
+            }
+        }
+
+        /**
+         * Returns a merged config item
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string|int $offset The config item key
+         *
+         * @return mixed
+         */
+        function offsetGet($offset) {
+            return $this->get($offset);
         }
     }

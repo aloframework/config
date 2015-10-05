@@ -86,6 +86,23 @@
             $this->assertEquals("one \t => foo, \ntwo \t => bar, \nfoo \t => bar", $c->__toString());
         }
 
+        function testArrayAccess() {
+            $c = new AbstractConfigTestCustomConfig(self::$defaults);
+
+            $this->assertEquals(self::$defaults, $c->getAll());
+            $c['foo'] = 'bar';
+            $this->assertEquals(array_merge(self::$defaults, ['foo' => 'bar']), $c->getAll());
+            $this->assertEquals('bar', $c['foo']);
+            $this->assertTrue(isset($c['foo']));
+
+            unset($c['foo']);
+            $this->assertEquals(self::$defaults, $c->getAll());
+            $this->assertFalse(isset($c['foo']));
+
+            $c[] = 'foo';
+            $this->assertEquals('foo', $c[0]);
+        }
+
         function settersProvider() {
             return [['one', 'one'],
                     ['foo', 'bar']];
