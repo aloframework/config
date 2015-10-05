@@ -48,6 +48,23 @@
         }
 
         /**
+         * Returns default configuration
+         * @return array
+         */
+        function getDefaultConfig() {
+            return $this->defaults;
+        }
+
+        /**
+         * Returns custom-set configuration
+         * @author Art <a.molcanovas@gmail.com>
+         * @return array
+         */
+        function getCustomConfig() {
+            return $this->custom;
+        }
+
+        /**
          * Merges the custom and default configurations
          * @author Art <a.molcanovas@gmail.com>
          *

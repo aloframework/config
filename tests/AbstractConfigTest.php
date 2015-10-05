@@ -4,7 +4,7 @@
 
     use PHPUnit_Framework_TestCase;
 
-    class CustomConfig extends AbstractConfig {
+    class AbstractConfigTestCustomConfig extends AbstractConfig {
 
     }
 
@@ -16,30 +16,38 @@
         private static $custom = ['foo' => 'bar'];
 
         function testConstructDefault() {
-            $c = new CustomConfig(self::$defaults);
+            $c = new AbstractConfigTestCustomConfig(self::$defaults);
 
             $this->assertEquals(self::$defaults, $c->getAll());
         }
 
+        function testGetDefaultAndCustomConfigs() {
+            $c = new AbstractConfigTestCustomConfig(self::$defaults, ['two' => 'buzz']);
+
+            $this->assertEquals(self::$defaults, $c->getDefaultConfig());
+            $this->assertEquals(['two' => 'buzz'], $c->getCustomConfig());
+            $this->assertEquals(['one' => 'foo', 'two' => 'buzz'], $c->getAll());
+        }
+
         function testConstructMerge() {
-            $c = new CustomConfig(self::$defaults, self::$custom);
+            $c = new AbstractConfigTestCustomConfig(self::$defaults, self::$custom);
 
             $this->assertEquals(['one' => 'foo', 'two' => 'bar', 'foo' => 'bar'], $c->getAll());
         }
 
         function testConstructOverride() {
-            $c = new CustomConfig(self::$defaults, ['foo' => 'bar', 'one' => 'one']);
+            $c = new AbstractConfigTestCustomConfig(self::$defaults, ['foo' => 'bar', 'one' => 'one']);
 
             $this->assertEquals(['one' => 'one', 'two' => 'bar', 'foo' => 'bar'], $c->getAll());
         }
 
         /** @dataProvider settersProvider */
         function testSetters($k, $v) {
-            $c1    = new CustomConfig(self::$defaults);
-            $c2    = new CustomConfig(self::$defaults);
+            $c1    = new AbstractConfigTestCustomConfig(self::$defaults);
+            $c2    = new AbstractConfigTestCustomConfig(self::$defaults);
             $merge = array_merge(self::$defaults, [$k => $v]);
 
-            $this->assertTrue($c1->set($k, $v) instanceof CustomConfig);
+            $this->assertTrue($c1->set($k, $v) instanceof AbstractConfigTestCustomConfig);
             $this->assertEquals($merge, $c1->getAll());
 
             $c2->{$k} = $v;
@@ -47,7 +55,7 @@
         }
 
         function testRemove() {
-            $c = new CustomConfig(self::$defaults, ['foo' => 'bar', 'one' => 'baz']);
+            $c = new AbstractConfigTestCustomConfig(self::$defaults, ['foo' => 'bar', 'one' => 'baz']);
 
             $this->assertEquals(['one' => 'baz', 'two' => 'bar', 'foo' => 'bar'], $c->getAll());
 
@@ -61,7 +69,7 @@
         }
 
         function testGetters() {
-            $c = new CustomConfig(self::$defaults, self::$custom);
+            $c = new AbstractConfigTestCustomConfig(self::$defaults, self::$custom);
 
             $this->assertEquals('bar', $c->get('foo'));
             $this->assertEquals('foo', $c->get('one'));
@@ -73,7 +81,7 @@
         }
 
         function testToString() {
-            $c = new CustomConfig(self::$defaults, self::$custom);
+            $c = new AbstractConfigTestCustomConfig(self::$defaults, self::$custom);
 
             $this->assertEquals("one \t => foo, \ntwo \t => bar, \nfoo \t => bar", $c->__toString());
         }

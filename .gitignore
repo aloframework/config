@@ -1,4 +1,3 @@
 apigen.neon
 vendor
 composer.lock
-local-test.php
