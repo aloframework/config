@@ -4,12 +4,15 @@
 
     use AloFramework\Common\Alo;
     use ArrayAccess;
+    use JsonSerializable;
+    use Serializable;
 
     /**
      * The abstract configuration class
      * @author Art <a.molcanovas@gmail.com>
+     * @since  1.1 Implements JsonSerializable, Serializable
      */
-    abstract class AbstractConfig implements ArrayAccess {
+    abstract class AbstractConfig implements ArrayAccess, JsonSerializable, Serializable {
 
         /**
          * Default configuration
@@ -46,6 +49,41 @@
             $this->defaults = $defaults;
             $this->custom   = $custom;
             $this->merge();
+        }
+
+        /**
+         * Serializes the object
+         * @author Art <a.molcanovas@gmail.com>
+         * @return string
+         * @since  1.1
+         */
+        public function serialize() {
+            return serialize([$this->defaults, $this->custom]);
+        }
+
+        /**
+         * Unserializes the object
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string $serialized The serialised string
+         *
+         * @since  1.1
+         */
+        public function unserialize($serialized) {
+            $s              = unserialize($serialized);
+            $this->defaults = $s[0];
+            $this->custom   = $s[1];
+            $this->merge();
+        }
+
+        /**
+         * Returns a json-encodable version of the object
+         * @author Art <a.molcanovas@gmail.com>
+         * @return array
+         * @since  1.1
+         */
+        function jsonSerialize() {
+            return $this->merged;
         }
 
         /**

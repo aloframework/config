@@ -21,6 +21,23 @@
             $this->assertEquals(self::$defaults, $c->getAll());
         }
 
+        function testJsonSerialize() {
+            $c   = new AbstractConfigTestCustomConfig(self::$defaults, self::$custom);
+            $enc = json_encode($c);
+            $this->assertEquals(json_encode(array_merge(self::$defaults, self::$custom)), $enc);
+        }
+
+        function testSerializeUnserialize() {
+            $c = new AbstractConfigTestCustomConfig(self::$defaults, self::$custom);
+            /** @var AbstractConfigTestCustomConfig $cNew */
+            $cNew = unserialize(serialize($c));
+
+            $this->assertEquals($c, $cNew);
+            $this->assertEquals($c->getDefaultConfig(), $cNew->getDefaultConfig());
+            $this->assertEquals($c->getCustomConfig(), $cNew->getCustomConfig());
+            $this->assertEquals($c->getAll(), $cNew->getAll());
+        }
+
         function testGetDefaultAndCustomConfigs() {
             $c = new AbstractConfigTestCustomConfig(self::$defaults, ['two' => 'buzz']);
 
