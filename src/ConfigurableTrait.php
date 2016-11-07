@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  *    Copyright (c) Arturas Molcanovas <a.molcanovas@gmail.com> 2016.
  *    https://github.com/aloframework/config
  *
@@ -16,7 +16,7 @@
  *    limitations under the License.
  */
 
-namespace AloFramework\Config;
+    namespace AloFramework\Config;
 
     /**
      * A quick implementation of the Configurable interface
