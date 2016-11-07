@@ -4,14 +4,13 @@ A component that allows easy object configuration with default and overriding se
 
 Latest release API documentation: [https://aloframework.github.io/config/](https://aloframework.github.io/config/)
 
-[![License](https://poser.pugx.org/aloframework/config/license?format=plastic)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+![License](https://poser.pugx.org/aloframework/config/license?format=plastic)
 [![Latest Stable Version](https://poser.pugx.org/aloframework/config/v/stable?format=plastic)](https://packagist.org/packages/aloframework/config)
 [![Total Downloads](https://poser.pugx.org/aloframework/config/downloads?format=plastic)](https://packagist.org/packages/aloframework/config)
 
 |                                                                                         dev-develop                                                                                         |                                                                               Latest release                                                                               |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |                                [![Dev Build Status](https://travis-ci.org/aloframework/config.svg?branch=develop)](https://travis-ci.org/aloframework/config)                               |                      [![Release Build Status](https://travis-ci.org/aloframework/config.svg?branch=master)](https://travis-ci.org/aloframework/config)                     |
-| [![SensioLabsInsight](https://insight.sensiolabs.com/projects/0cb6838a-c3bd-433a-81d0-ddea1aa4696d/mini.png)](https://insight.sensiolabs.com/projects/0cb6838a-c3bd-433a-81d0-ddea1aa4696d) |                    [![SensioLabsInsight](https://i.imgur.com/KygqLtf.png)](https://insight.sensiolabs.com/projects/0cb6838a-c3bd-433a-81d0-ddea1aa4696d)                   |
 | [![Coverage Status](https://coveralls.io/repos/aloframework/config/badge.svg?branch=develop&service=github)](https://coveralls.io/github/aloframework/config?branch=develop)                | [![Coverage Status](https://coveralls.io/repos/aloframework/config/badge.svg?branch=master&service=github)](https://coveralls.io/github/aloframework/config?branch=master) |
 
 ## Installation ##
